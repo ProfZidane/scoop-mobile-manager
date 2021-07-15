@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="goToListFinance()">
+        <ion-icon name="notifications-outline" slot="start"></ion-icon>
+        <strong *ngIf="!financesEnAttente">(0)</strong>
+        <strong *ngIf="financesEnAttente">({{  financesEnAttente }})</strong>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>SCOOP APP</ion-title>
+
+    <ion-buttons slot="secondary" >
+      <ion-button (click)="presentAlertConfirm()" >
+        <ion-icon name="power-outline" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin: 2rem;" *ngIf='userConnected'>
+    <h6 style="text-transform: capitalize;">
+      Bienvenue <strong>{{ userConnected.name }}</strong>
+    </h6>
+    <small style="color: gray;" color="secondary"><em>Responsable {{ userConnected.role }}</em></small>
+  </div>
+  <div>
+    <br>
+      <ion-row>
+        <ion-col class="card" size="6">
+          <ion-card color="success">
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="12">
+                  <h1 *ngIf='!sales'>0</h1>
+                  <h1 *ngIf='sales'>{{ sales }}</h1>
+                  <small>Achats</small>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col class="card" size="6">
+          <ion-card color="success">
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="8">
+                  <h1 *ngIf="!partners">0</h1>
+                  <h1 *ngIf="partners">{{ partners }}</h1>
+                </ion-col>
+                <small>Partenaires</small>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ion-col class="card" size="6">
+          <ion-card color="success">
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="8">
+                  <h1 *ngIf="finances">{{ finances | number }}</h1>
+                  <h1 *ngIf="!finances">0</h1>
+                </ion-col>
+                <small>Financements</small>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col class="card" size="6">
+          <ion-card color="danger">
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="8">
+                  <h1 *ngIf="prefinances">{{ prefinances | number }}</h1>
+                  <h1 *ngIf="!prefinances">0</h1>
+                </ion-col>
+                <small>Préfinancements</small>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  </div>
+
+  <div class="chart">
+
+    <ion-card>
+      <ion-spinner name="crescent" *ngIf="processus === false"></ion-spinner>
+      <ion-card-header>
+        <ion-card-subtitle style="font-weight: 700;">Variation de prix d'achats</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas height="300px"></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <br>
+  <br>
+
+  <!-- <div class="container">
+    <ion-button color="primary" (click)="goToListFinance()">Financements</ion-button>
+  </div> -->
+</ion-content>

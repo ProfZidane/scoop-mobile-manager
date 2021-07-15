@@ -1,0 +1,27 @@
+.container {
+  transform: translateY(50%);
+}
+
+.card {
+  /* border: solid; */
+}
+
+h1 {
+  font-size: 35px;
+}
+
+ion-card {
+  margin: 0rem;
+  height: 120px;
+}
+
+
+.chart {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+.chart > ion-card {
+  height: 100%;
+}

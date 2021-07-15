@@ -1,4 +1,7 @@
+import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,50 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+data = {
+  email: '',
+  password: ''
+};
+err = {
+  state: false,
+  text: ''
+};
+  constructor(public loadingController: LoadingController, private authService: AuthService, private router: Router) {}
 
-  constructor() {}
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+    });
+    return await loading.present();
 
+  }
+
+  async login() {
+    this.err.state = false;
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Veuillez patientez...',
+    });
+    loading.present();
+    console.log(this.data);
+
+    this.authService.Login(this.data).subscribe(
+      (success) => {
+        loading.dismiss();
+        console.log(success);
+        localStorage.setItem('mobile-token', success.token);
+        localStorage.setItem('userData', JSON.stringify(success.user));
+        localStorage.setItem('right', JSON.stringify(success.droits));
+        this.router.navigateByUrl('main-page');
+      }, (err) => {
+        this.err.state = true;
+        if (err.status === 500 || err.status === 0) {
+          this.err.text = "Une erreur est survenue. Veuillez réessayez plus tard!";
+        }
+        console.log(err);
+        loading.dismiss();
+      }
+    );
+  }
 }

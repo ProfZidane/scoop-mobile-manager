@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Détails financement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="details">
+    <ion-row class="row">
+      <ion-col>
+        <h6>Banque</h6>
+      </ion-col>
+      <ion-col>
+       <p> {{ details.banque }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row">
+      <ion-col>
+        <h6>Compte</h6>
+      </ion-col>
+      <ion-col>
+        <p>{{ details.compte_number }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row">
+      <ion-col>
+        <h6>Type Acteur</h6>
+      </ion-col>
+      <ion-col>
+        <p>{{ details.acteur_type }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row">
+      <ion-col>
+        <h6>Nom Acteur</h6>
+      </ion-col>
+      <ion-col>
+        <p>{{ details.acteur }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row">
+      <ion-col>
+        <h6>Montant</h6>
+      </ion-col>
+      <ion-col>
+        <p>{{ details.montant | number }} Fcfa</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row">
+      <ion-col>
+        <h6>Etat</h6>
+      </ion-col>
+      <ion-col>
+        <p>{{ details.etat }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row">
+      <ion-col>
+        <h6>Date</h6>
+      </ion-col>
+      <ion-col>
+        <p>{{ details.date }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="btn">
+      <ion-col size="12">
+        <ion-button color="warning" expand="block" (click)="pieceJointe(details.piece_jointe)">Pièce jointe</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button color="success" expand="block" (click)="validation(details.id)">Valider</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <br><br><br>
+  </div>
+
+</ion-content>
