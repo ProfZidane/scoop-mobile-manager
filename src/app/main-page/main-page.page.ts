@@ -1,12 +1,11 @@
 import { PartnerService } from './../services/partner.service';
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { FinanceService } from '../services/finance.service';
 import { AlertController } from '@ionic/angular';
 import { SalesService } from '../services/sales.service';
-
 Chart.register(...registerables);
 @Component({
   selector: 'app-main-page',
@@ -25,24 +24,31 @@ userConnected;
   salesSort = [0,0,0,0,0,0,0,0,0,0,0,0];
   processus = false;
   constructor(private router: Router, private financeService: FinanceService, private authService: AuthService,
-              public alertController: AlertController, private salesService: SalesService, private partnerService: PartnerService) { }
+              public alertController: AlertController, private salesService: SalesService, private partnerService: PartnerService,
+              private ngZone: NgZone) { }
 
   ngOnInit() {
     this.userConnected = JSON.parse(localStorage.getItem('userData'));
     this.GetFinances();
     this.GetPrefinancements();
-    this.GetFinancementEnAttente();
+    
+    setInterval( () => {
+      this.GetFinancementEnAttente();
+    }, 5000);
+    
+    
     this.GetSales();
     this.GetPartners();
     this.GetSalesByMonth();
   }
+  
 
 
   ngAfterViewInit() {
-    setTimeout( () => {
+    /* setTimeout( () => {
         this.yourCustomFunctionName();
-    }, 5500);
-
+    }, 5500); */
+    // this.yourCustomFunctionName();
 
   }
 
@@ -52,13 +58,39 @@ userConnected;
     }
   }
 
+  reload() {
+    // window.location.reload();
+    // window.location.assign('/');
+    this.salesSort = [0,0,0,0,0,0,0,0,0,0,0,0];
+    this.lineChart.destroy();
+    this.prefinances = 0;
+    this.finances = 0;
+    this.sales = 0;
+    this.partners = 0;
+    this.processus = false;
+    this.financesEnAttente = 0;
+    this.ngOnInit();
+  }
+
+
+  goToRecapFinance() {
+    this.router.navigateByUrl('financement-management');
+  }
+
+  goToRecapPartner() {
+    this.router.navigateByUrl('partner-list');
+  }
+
+  goToRecapPrefinance() {
+    this.router.navigateByUrl('prefinancement-management');
+  }
+
 
   goToListFinance() {
     this.router.navigateByUrl('finance-no-valided-page');
   }
 
-  yourCustomFunctionName() {
-      if (this.processus) {
+  yourCustomFunctionName(data_table) {
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
           type: 'bar',
@@ -70,12 +102,11 @@ userConnected;
                       backgroundColor: 'rgba(75,192,192,0.4)',
                       borderColor: 'rgba(75,192,192,1)',
 
-                      data: this.salesSort,
+                      data: data_table,
                   }
               ]
           }
       });
-      }
 }
 
 GetFinances() {
@@ -106,15 +137,18 @@ GetPrefinancements() {
 
 
 GetFinancementEnAttente() {
-  this.financeService.GetFinancementEnAttente().subscribe(
-    (data) => {
-      console.log(data);
-      this.financesEnAttente = data.data.length;
-      console.log(this.financesEnAttente);
-    }, (err) => {
-      console.log(err);
-    }
-  );
+    this.financeService.GetFinancementEnAttente().subscribe(
+      (data) => {
+        console.log(data);
+        
+        this.financesEnAttente = data.data.length;
+          console.log(this.financesEnAttente);
+        
+      }, (err) => {
+        console.log(err);
+      }
+    );
+  
 }
 
 
@@ -287,6 +321,7 @@ GetSalesByMonth() {
       });
 
       console.log(this.salesSort);
+      this.yourCustomFunctionName(this.salesSort);
       this.processus = true;
     }, (err) => {
       console.log(err);

@@ -15,9 +15,7 @@ finances;
     this.getFinancingNotValided();
   }
 
-  ngAfterViewChecked() {
-    console.log('arp');
-  }
+  
 
   
 

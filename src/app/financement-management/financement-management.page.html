@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>financement-management</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Récap-financement</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div>
+
+    <ion-card *ngIf="recuFinancing">
+      <ion-card-header>
+        <ion-card-subtitle>Financements reçus</ion-card-subtitle>
+        <ion-card-title>
+          {{ recuFinancing.length }}
+          <span style="float: right;">
+            <ion-icon name="wallet-outline" color="success" style="font-size: 30px;"></ion-icon>
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+       {{ montantRecu | number  }} Fcfa
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="octFinancing">
+      <ion-card-header>
+        <ion-card-subtitle>Financements octroyés</ion-card-subtitle>
+        <ion-card-title>
+          {{ octFinancing.length }}
+          <span style="float: right;">
+            <ion-icon name="cash-outline" color="success" style="font-size: 30px;"></ion-icon>
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{ montantOctroye | number }} Fcfa
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 
 </ion-content>

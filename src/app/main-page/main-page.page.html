@@ -8,7 +8,7 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>SCOOP APP</ion-title>
+    <ion-title (click)='reload()'>SCOOP APP</ion-title>
 
     <ion-buttons slot="secondary" >
       <ion-button (click)="presentAlertConfirm()" >
@@ -43,7 +43,7 @@
           </ion-card>
         </ion-col>
         <ion-col class="card" size="6">
-          <ion-card color="success">
+          <ion-card color="success" (click)="goToRecapPartner()">
             <ion-card-content>
               <ion-row>
                 <ion-col size="8">
@@ -59,7 +59,7 @@
       <br>
       <ion-row>
         <ion-col class="card" size="6">
-          <ion-card color="success">
+          <ion-card color="success" (click)="goToRecapFinance()">
             <ion-card-content>
               <ion-row>
                 <ion-col size="8">
@@ -72,7 +72,7 @@
           </ion-card>
         </ion-col>
         <ion-col class="card" size="6">
-          <ion-card color="danger">
+          <ion-card color="danger" (click)="goToRecapPrefinance()">
             <ion-card-content>
               <ion-row>
                 <ion-col size="8">
@@ -90,11 +90,14 @@
   <div class="chart">
 
     <ion-card>
-      <ion-spinner name="crescent" *ngIf="processus === false"></ion-spinner>
+      
       <ion-card-header>
         <ion-card-subtitle style="font-weight: 700;">Variation de prix d'achats</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
+        <div align="center">
+          <ion-spinner name="crescent" *ngIf="processus === false"></ion-spinner>
+        </div>
         <canvas #lineCanvas height="300px"></canvas>
       </ion-card-content>
     </ion-card>

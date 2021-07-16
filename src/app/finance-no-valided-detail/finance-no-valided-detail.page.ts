@@ -37,7 +37,8 @@ details;
       (success) => {
         console.log(success);
         loading.dismiss();
-        this.navController.back();
+        this.navController.navigateBack('/main-page');
+        // this.navController.back();
       }, (err) => {
         console.log(err);
         loading.dismiss();

@@ -11,9 +11,13 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      const token = localStorage.getItem('token');
-      if (token !== null) {
-        return true;
+      const token = localStorage.getItem('mobile-token');
+      let user = JSON.parse(localStorage.getItem('userData'));
+
+      if (token !== null && user.is_super_manager === 1) {
+
+          return true;
+        
       } else {
         console.log('Non autorisé !');
 

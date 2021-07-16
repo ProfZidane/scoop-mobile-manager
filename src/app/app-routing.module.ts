@@ -42,6 +42,11 @@ const routes: Routes = [
     loadChildren: () => import('./prefinancement-management/prefinancement-management.module').then( m => m.PrefinancementManagementPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'partner-list',
+    loadChildren: () => import('./partner-list/partner-list.module').then( m => m.PartnerListPageModule)
+  },
+
 ];
 
 @NgModule({

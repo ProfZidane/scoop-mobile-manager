@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>prefinancement-management</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div>
+
+    <ion-card *ngIf="recuPreFinancing">
+      <ion-card-header>
+        <ion-card-subtitle>Préfinancements reçus</ion-card-subtitle>
+        <ion-card-title>
+          {{ recuPreFinancing.length }}
+          <span style="float: right;">
+            <ion-icon name="wallet-outline" color="success" style="font-size: 30px;"></ion-icon>
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+       {{ montantRecu | number  }} Fcfa
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="octPreFinancing">
+      <ion-card-header>
+        <ion-card-subtitle>Préfinancements octroyés</ion-card-subtitle>
+        <ion-card-title>
+          {{ octPreFinancing.length }}
+          <span style="float: right;">
+            <ion-icon name="cash-outline" color="success" style="font-size: 30px;"></ion-icon>
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{ montantOctroye | number }} Fcfa
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 
 </ion-content>

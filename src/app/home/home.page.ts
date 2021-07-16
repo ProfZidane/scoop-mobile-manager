@@ -41,10 +41,16 @@ err = {
       (success) => {
         loading.dismiss();
         console.log(success);
-        localStorage.setItem('mobile-token', success.token);
-        localStorage.setItem('userData', JSON.stringify(success.user));
-        localStorage.setItem('right', JSON.stringify(success.droits));
-        this.router.navigateByUrl('main-page');
+        if (success.user.is_super_manager === 1) {
+          localStorage.setItem('mobile-token', success.token);
+          localStorage.setItem('userData', JSON.stringify(success.user));
+          localStorage.setItem('right', JSON.stringify(success.droits));
+          this.router.navigateByUrl('main-page');
+        } else {
+          this.err.state = true;
+          this.err.text = "Vous n'êtes pas autorisé !";
+        }
+        
       }, (err) => {
         this.err.state = true;
         if (err.status === 500 || err.status === 0) {

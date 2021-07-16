@@ -16,7 +16,7 @@ export class AuthService {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Methods' : 'GET, POST, PUT, DELETE, PATCH',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
+        Authorization: 'Bearer ' + localStorage.getItem('mobile-token')
       });
       return headers;
     }
