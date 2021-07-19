@@ -45,7 +45,11 @@ const routes: Routes = [
   {
     path: 'partner-list',
     loadChildren: () => import('./partner-list/partner-list.module').then( m => m.PartnerListPageModule)
+  },  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   },
+
 
 ];
 

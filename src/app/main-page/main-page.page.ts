@@ -39,7 +39,7 @@ userConnected;
     
     this.GetSales();
     this.GetPartners();
-    this.GetSalesByMonth();
+    // this.GetSalesByMonth();
   }
   
 
@@ -61,8 +61,8 @@ userConnected;
   reload() {
     // window.location.reload();
     // window.location.assign('/');
-    this.salesSort = [0,0,0,0,0,0,0,0,0,0,0,0];
-    this.lineChart.destroy();
+    // this.salesSort = [0,0,0,0,0,0,0,0,0,0,0,0];
+    // this.lineChart.destroy();
     this.prefinances = 0;
     this.finances = 0;
     this.sales = 0;
@@ -83,6 +83,10 @@ userConnected;
 
   goToRecapPrefinance() {
     this.router.navigateByUrl('prefinancement-management');
+  }
+
+  goToRecapSale() {
+    this.router.navigateByUrl('achat-management');
   }
 
 

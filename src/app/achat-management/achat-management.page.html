@@ -1,9 +1,71 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>achat-management</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Récap achats</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div>
+
+    <ion-card *ngIf="sales">
+      <ion-card-header>
+        <ion-card-subtitle>Nombre Total d'achats</ion-card-subtitle>
+        <ion-card-title>
+          {{ sales }} 
+          <span style="float: right;">
+            <ion-icon name="cash-outline" color="success" style="font-size: 30px;"></ion-icon>
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ achatMontant | number }} Fcfa
+       </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="poids">
+      <ion-card-header>
+        <ion-card-subtitle>Poids Total (kg)</ion-card-subtitle>
+        <ion-card-title>
+          {{ poids | number }} 
+          <span style="float: right;">
+            <ion-icon name="scale-outline" color="success" style="font-size: 30px;"></ion-icon>            
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngIf="sacs">
+      <ion-card-header>
+        <ion-card-subtitle>Nombre de sacs Total</ion-card-subtitle>
+        <ion-card-title>
+          {{ sacs | number }} 
+          <span style="float: right;">
+            <ion-icon name="bag-outline" color="success" style="font-size: 30px;"></ion-icon>            
+          </span>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+  </div>
+
+  <div class="chart">
+
+    <ion-card>
+      
+      <ion-card-header>
+        <ion-card-subtitle style="font-weight: 700;">Variation de prix unitaire d'achats</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div align="center">
+          <ion-spinner name="crescent" *ngIf="processus === false"></ion-spinner>
+        </div>
+        <canvas #lineCanvas height="300px"></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>

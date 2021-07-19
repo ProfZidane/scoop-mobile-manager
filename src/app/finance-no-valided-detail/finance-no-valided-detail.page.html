@@ -11,66 +11,129 @@
 
   <div *ngIf="details">
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Banque</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.banque }}
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Banque</h6>
       </ion-col>
       <ion-col>
        <p> {{ details.banque }}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Compte</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.compte_number }}
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Compte</h6>
       </ion-col>
       <ion-col>
         <p>{{ details.compte_number }}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Type Acteur</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.acteur_type }}
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Type Acteur</h6>
       </ion-col>
       <ion-col>
         <p>{{ details.acteur_type }}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Nom Acteur</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.acteur }}
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Nom Acteur</h6>
       </ion-col>
       <ion-col>
         <p>{{ details.acteur }}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Montant</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.montant | number }} Fcfa
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Montant</h6>
       </ion-col>
       <ion-col>
         <p>{{ details.montant | number }} Fcfa</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Etat</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.etat }}
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Etat</h6>
       </ion-col>
       <ion-col>
         <p>{{ details.etat }}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="row">
-      <ion-col>
+      <ion-card style="width: 100%;">
+        <ion-card-header>
+          <ion-card-subtitle>Date</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{ details.date }}
+        </ion-card-content>
+      </ion-card>
+      <!-- <ion-col>
         <h6>Date</h6>
       </ion-col>
       <ion-col>
         <p>{{ details.date }}</p>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <ion-row class="btn">
